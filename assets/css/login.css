@@ -1,0 +1,165 @@
+:root {
+    --bg-primary: #FF7300;
+    --bg-card: #FFFFFF;
+    --text-primary: #000000;
+    --text-placeholder: #555555;
+    --text-link: #2979FF;
+    --btn-bg: #FF7300;
+    --btn-bg-hover: #E06300;
+    --btn-text: #FFFFFF;
+    --border-input: #1A1A1A;
+    --shadow-card: 0px 10px 25px rgba(0, 0, 0, 0.25);
+
+    --alert-error-bg: #FFEBEB;
+    --alert-error-border: #FF4D4D;
+    --alert-error-text: #D32F2F;
+
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-size-title: 2.25rem;     
+    --font-size-label: 1.125rem;    
+    --font-size-input: 0.875rem;   
+    --font-size-link: 0.75rem;      
+    --font-size-btn: 0.95rem;       
+
+    --card-width: 100%;
+    --card-max-width: 480px;
+    --card-padding: 3.5rem 3.5rem 3rem 3.5rem;
+    --card-radius: 32px;
+    --input-height: 40px;
+    --input-radius: 6px;
+    --btn-padding: 0.75rem 2.25rem;
+    --btn-radius: 8px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family);
+}
+
+body {
+    background-color: var(--bg-primary);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.form-card {
+    background-color: var(--bg-card);
+    width: var(--card-width);
+    max-width: var(--card-max-width);
+    padding: var(--card-padding);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alert {
+    display: none; 
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.5rem;
+    border-radius: var(--input-radius);
+    background-color: var(--alert-error-bg);
+    border: 1px solid var(--alert-error-border);
+    color: var(--alert-error-text);
+    font-size: var(--font-size-input);
+    font-weight: 500;
+}
+
+h1 {
+    color: var(--text-primary);
+    font-size: var(--font-size-title);
+    font-weight: 900;
+    letter-spacing: 0.5px;
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    color: var(--text-primary);
+    font-size: var(--font-size-label);
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    height: var(--input-height);
+    padding: 0 0.75rem;
+    border: 1.5px solid var(--border-input);
+    border-radius: var(--input-radius);
+    font-size: var(--font-size-input);
+    color: var(--text-primary);
+    background-color: var(--bg-card);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+input[type="email"] {
+    margin-bottom: 1.5rem;
+}
+
+input[type="email"]::placeholder,
+input[type="password"]::placeholder {
+    color: var(--text-placeholder);
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+    border-color: var(--bg-primary);
+}
+
+.forgot-password {
+    align-self: flex-end;
+    margin-top: 0.35rem;
+    color: var(--text-link);
+    font-size: var(--font-size-link);
+    font-style: italic;
+    text-decoration: none;
+}
+
+.forgot-password:hover {
+    text-decoration: underline;
+}
+
+input[type="button"],
+button[type="submit"] {
+    align-self: center;
+    margin-top: 2.25rem;
+    background-color: var(--btn-bg);
+    color: var(--btn-text);
+    border: none;
+    border-radius: var(--btn-radius);
+    padding: var(--btn-padding);
+    font-size: var(--font-size-btn);
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+input[type="button"]:hover,
+button[type="submit"]:hover {
+    background-color: var(--btn-bg-hover);
+}
+
+input[type="button"]:active,
+button[type="submit"]:active {
+    transform: scale(0.98);
+}

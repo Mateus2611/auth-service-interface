@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acesso Negado - Acrillservice</title>
+    <link rel="stylesheet" href="./assets/css/sysadmin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body style="display: none;">
+    <div class="app-container">
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <img src="./assets/img/logo.png" alt="Acrillservice" onerror="this.style.display='none'">
+                <span class="logo-text">ACRILLSERVICE</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="http://localhost:8085/" class="nav-item">
+                    <i class="fa-solid fa-house"></i> INÍCIO
+                </a>
+                <a href="http://localhost:8085/produtos" class="nav-item">
+                    <i class="fa-solid fa-box"></i> PRODUTO
+                </a>
+                <a href="http://localhost:8085/vendas" class="nav-item">
+                    <i class="fa-solid fa-cart-shopping"></i> VENDAS
+                </a>
+                <a href="http://localhost:8085/orcamentos" class="nav-item">
+                    <i class="fa-solid fa-file-lines"></i> ORÇAMENTOS
+                </a>
+                <a href="http://localhost:8085/clientes" class="nav-item">
+                    <i class="fa-solid fa-users"></i> CLIENTES
+                </a>
+                <a href="http://localhost:8085/avaliacoes" class="nav-item">
+                    <i class="fa-solid fa-star"></i> AVALIAÇÕES
+                </a>
+                <a href="./index.html" class="nav-item" id="menu-sysadmin">
+                    <i class="fa-solid fa-shield-halved"></i> SYSADMIN
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div id="user-logged-email" class="user-logged-info"></div>
+                <button type="button" id="btn-logout" class="nav-item logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i> SAIR
+                </button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="page-header">
+                <h1>ACESSO RESTRITO</h1>
+            </header>
+
+            <section class="forbidden-container">
+                <div class="forbidden-icon">
+                    <i class="fa-solid fa-lock"></i>
+                </div>
+                <span class="forbidden-code">403</span>
+                <h2 class="forbidden-title">Você não tem autorização para acessar esta tela</h2>
+                <p class="forbidden-text">
+                    Seu perfil de usuário não possui permissão para visualizar este módulo ou executar esta operação.
+                    Utilize o menu lateral para navegar para uma área liberada ao seu perfil.
+                </p>
+
+                <div class="forbidden-actions">
+                    <button type="button" id="btn-voltar" class="btn-secondary">VOLTAR</button>
+                    <a href="http://localhost:8085/" class="btn-primary btn-link">
+                        IR PARA O INÍCIO
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script type="module" src="./assets/js/forbidden/main.js"></script>
+</body>
+</html>
