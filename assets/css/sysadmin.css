@@ -1,55 +1,96 @@
 :root {
     --bg-outer: #eef2f5;
-    --bg-main: #ffffff;
     --bg-sidebar: #ffffff;
-    --bg-table-row: #f5f5f5;
-    --bg-table-row-hover: #dcdcdc;
-    --bg-nav-hover: #FFF4EB;
+    --bg-surface: #ffffff;
+    --bg-subtle: #f5f7fa;
+    --bg-subtle-hover: #ebeff5;
     --bg-modal-overlay: rgba(20, 33, 61, 0.55);
 
-    --brand-orange: #ff7e12;
-    --brand-orange-hover: #E06500;
-    --brand-orange-modal: #ff9433;
-    --brand-navy: #14213d;
-    --brand-navy-hover: #1e315c;
+    --border-color: #e0e4ec;
+    --border-sidebar: #d1d5db;
+    --input-bg: #ffffff;
+    --input-border: #333333;
 
     --text-primary: #14213d;
-    --text-body: #212529;
-    --text-th: #393939;
-    --text-muted: #6c757d;
-    --text-inverse: #ffffff;
+    --text-secondary: #393939;
+    --text-muted: #5a6577;
 
-    --border-container: #e0e0e0;
-    --border-sidebar: #cccccc;
-    --border-input: #000000;
+    --brand-orange: #ff7e12;
+    --brand-orange-hover: #e06500;
+    --brand-orange-modal: #ff9433;
+    --brand-orange-text: #ffffff;
+    --brand-navy: #14213d;
+    --active-border: #14213d;
+    --nav-hover: #fff4eb;
+    --shadow-main: 0 12px 40px rgba(20, 33, 61, 0.08);
 
-    --badge-active-bg: #4ec9b4;
-    --badge-warning-bg: #ff9c0f;
-    --badge-inactive-bg: #e51f01;
-    --badge-role-bg: #eef2f5;
+    /* Widget de Perfil (Tema Claro) */
+    --avatar-bg: #14213d;
+    --avatar-text: #ffffff;
+    --theme-btn-bg: #ff7e12;
+    --theme-btn-border: #ff7e12;
+    --theme-btn-icon: #ffffff;
 
-    --btn-disabled-bg: #e9ecef;
-    --btn-disabled-text: #6c757d;
-    --btn-disabled-border: #ced4da;
+    /* Badges */
+    --badge-active-bg: #10b981;
+    --badge-warning-bg: #f59e0b;
+    --badge-inactive-bg: #ef4444;
 
     --font-family: 'Inter', sans-serif;
     --sidebar-width: 228px;
+}
+
+/* =========================================================
+   TEMA ESCURO (IDÊNTICO AO MONOLITO)
+   ========================================================= */
+[data-theme="dark"] {
+    --bg-outer: #05080f;
+    --bg-sidebar: #090e1a;
+    --bg-surface: #0e1525;
+    --bg-subtle: #151f34;
+    --bg-subtle-hover: #1c2944;
+    --bg-modal-overlay: rgba(2, 6, 16, 0.78);
+
+    --border-color: #1f2c47;
+    --border-sidebar: #1a253c;
+    --input-bg: #090e1a;
+    --input-border: #263554;
+
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --text-muted: #8b9bb4;
+
+    --brand-orange: #ff7e12;
+    --brand-orange-hover: #ff9438;
+    --brand-orange-text: #f8fafc;
+    --active-border: #f8fafc;
+    --nav-hover: rgba(255, 126, 18, 0.12);
+    --shadow-main: 0 16px 48px rgba(0, 0, 0, 0.8);
+
+    --avatar-bg: #f8fafc;
+    --avatar-text: #090e1a;
+    --theme-btn-bg: rgba(255, 126, 18, 0.12);
+    --theme-btn-border: #ff7e12;
+    --theme-btn-icon: #ff9438;
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-family);
+    font-family: 'Inter', sans-serif;
 }
 
 body {
+    font-family: 'Inter', sans-serif;
     background-color: var(--bg-outer);
-    color: var(--text-body);
+    color: var(--text-primary);
     padding: 5px;
     height: 100vh;
     margin: 0;
+    box-sizing: border-box;
     overflow: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 /* Moldura principal arredondada do monolito */
@@ -58,31 +99,40 @@ body {
     height: 100%;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(20, 33, 61, 0.08);
-    background-color: var(--bg-main);
-    border: 1px solid var(--border-container);
+    box-shadow: var(--shadow-main);
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-/* Sidebar */
 .sidebar {
-    width: var(--sidebar-width);
+    width: 228px;
     height: 100%;
+    position: sticky;
     background-color: var(--bg-sidebar);
     border-right: 1px solid var(--border-sidebar);
-    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.25);
     z-index: 10;
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
     overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 
 .sidebar-logo {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.5rem 0;
-    margin-bottom: 0.5rem;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    margin-bottom: 8px;
     width: 100%;
 }
 
@@ -96,26 +146,32 @@ body {
 .sidebar-logo img {
     max-height: 120px;
     max-width: 120px;
+    width: auto;
+    height: auto;
     object-fit: contain;
+    transition: filter 0.2s ease;
+}
+
+[data-theme="dark"] .sidebar-logo img {
+    filter: brightness(0) invert(1);
 }
 
 .sidebar-nav {
     display: flex;
     flex-direction: column;
-    flex: 1;
 }
 
 .nav-item {
     display: flex;
     align-items: center;
-    padding: 20px 30px;
-    color: var(--brand-navy);
+    padding: 16px 24px;
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 900;
-    font-size: 14px;
-    letter-spacing: 1px;
+    font-weight: 800;
+    font-size: 13px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     border: none;
     background: transparent;
     width: 100%;
@@ -124,61 +180,159 @@ body {
 }
 
 .nav-item i {
-    font-size: 24px;
+    font-size: 20px;
     margin-right: 10px;
-    color: var(--brand-navy);
+    color: var(--text-muted);
     line-height: 1;
+    transition: color 0.2s ease-in-out;
 }
 
-.nav-item:hover:not(.active):not(.logout-btn) {
-    background-color: var(--bg-nav-hover);
+.nav-item:hover:not(.active) {
+    background-color: var(--nav-hover);
+    color: var(--text-primary);
+}
+
+.nav-item:hover:not(.active) i {
+    color: var(--brand-orange);
 }
 
 .nav-item.active {
     background-color: var(--brand-orange);
-    border-bottom: 3px solid var(--brand-navy);
-    color: var(--text-inverse);
+    border-bottom: 3px solid var(--active-border);
+    color: var(--brand-orange-text);
+    font-weight: 900;
 }
 
 .nav-item.active i {
-    color: var(--text-inverse) !important;
+    color: var(--brand-orange-text) !important;
 }
 
-.sidebar-footer {
-    border-top: 1px solid var(--border-container);
+
+.user-profile-widget {
+    margin-top: auto;
+    padding: 12px 14px;
+    border-top: 1px solid var(--border-color);
+    background-color: var(--bg-sidebar);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    flex-shrink: 0;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
 }
 
-.logout-btn {
-    color: var(--badge-inactive-bg);
+.user-info-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.logout-btn i {
-    color: var(--badge-inactive-bg);
+.user-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--avatar-bg);
+    color: var(--avatar-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 1rem;
+    flex-shrink: 0;
+    overflow: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.logout-btn:hover {
-    background-color: #fff0ee !important;
+.user-details {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
 }
 
-/* Conteúdo Principal */
+.user-email {
+    font-weight: 800;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-role {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.user-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-theme {
+    flex: 1;
+    height: 32px;
+    border-radius: 6px;
+    background-color: var(--theme-btn-bg);
+    border: 1.5px solid var(--theme-btn-border);
+    color: var(--theme-btn-icon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-theme:hover {
+    background-color: var(--brand-orange);
+    color: var(--brand-orange-text);
+}
+
+.btn-logout {
+    flex: 1;
+    height: 32px;
+    border-radius: 6px;
+    background-color: var(--brand-orange);
+    border: none;
+    color: var(--brand-orange-text);
+    font-weight: 800;
+    font-size: 0.78rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-logout:hover {
+    background-color: var(--brand-orange-hover);
+}
+
 .main-content {
-    background-color: var(--bg-main);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
     height: 100%;
     flex-grow: 1;
     padding: 3rem;
     overflow-y: auto;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.page-header {
+    margin-bottom: 0.5rem;
 }
 
 .page-title {
     font-size: 3rem;
     font-weight: 900;
-    color: var(--brand-navy);
+    color: var(--text-primary);
     letter-spacing: -1px;
-    margin-bottom: 1rem;
+    line-height: 1.2;
+    margin: 0;
     text-transform: uppercase;
 }
 
-/* Alerta flutuante no padrão Toast do monolito */
 .alert {
     position: fixed;
     top: 0;
@@ -213,7 +367,16 @@ body {
     color: #0f5132;
 }
 
-/* Toolbar & Botões Principais */
+[data-theme="dark"] .alert {
+    background-color: #2b1218;
+    color: #fecdd3;
+}
+
+[data-theme="dark"] .alert.success {
+    background-color: #0f291e;
+    color: #a7f3d0;
+}
+
 .toolbar {
     display: flex;
     justify-content: space-between;
@@ -231,8 +394,8 @@ body {
 
 .btn-orange {
     background-color: var(--brand-orange);
-    color: var(--text-inverse);
-    font-weight: 700;
+    color: var(--brand-orange-text);
+    font-weight: 800;
     font-size: 0.85rem;
     padding: 10px 20px;
     border: none;
@@ -244,10 +407,10 @@ body {
 
 .btn-orange:hover {
     background-color: var(--brand-orange-hover);
-    color: var(--text-inverse);
+    color: var(--brand-orange-text);
 }
 
-/* Tabela no padrão do monolito */
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -261,11 +424,12 @@ body {
 }
 
 .data-table thead th {
-    border-bottom: 2px solid var(--border-sidebar);
-    color: var(--text-th);
+    border-bottom: 2px solid var(--border-color);
+    color: var(--text-muted);
     font-weight: 700;
     text-transform: uppercase;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
     padding: 12px;
 }
 
@@ -278,17 +442,18 @@ body {
 }
 
 .data-table tbody tr:hover td {
-    background-color: var(--bg-table-row-hover);
+    background-color: var(--bg-subtle-hover);
 }
 
 .data-table tbody td {
     vertical-align: middle;
-    background-color: var(--bg-table-row);
-    border-bottom: 6px solid #ffffff;
+    background-color: var(--bg-subtle);
+    border-bottom: 6px solid var(--bg-surface);
     padding: 12px;
     font-weight: 400;
     font-size: 0.95rem;
-    color: var(--text-body);
+    color: var(--text-primary);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .data-table tbody td.actions-cell {
@@ -308,9 +473,9 @@ body {
 }
 
 .role-badge {
-    background-color: #ffffff;
-    color: var(--brand-navy);
-    border: 1.5px solid var(--brand-navy);
+    background-color: var(--bg-surface);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-color);
     padding: 0.25rem 0.6rem;
     border-radius: 6px;
     font-size: 0.78rem;
@@ -321,7 +486,7 @@ body {
     display: inline-block;
     padding: 0.4em 0.65em;
     border-radius: 6px;
-    color: var(--text-inverse);
+    color: #ffffff;
     font-size: 0.78rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -353,19 +518,19 @@ body {
 }
 
 .btn-permissions {
-    background-color: var(--brand-navy);
-    color: var(--text-inverse);
-    border: 1.8px solid var(--brand-navy);
+    background-color: #14213d;
+    color: #ffffff;
+    border: 1.8px solid #14213d;
 }
 
 .btn-permissions:hover {
     background-color: transparent;
-    color: var(--brand-navy);
+    color: var(--text-primary);
 }
 
 .btn-edit {
     background-color: var(--brand-orange);
-    color: var(--text-inverse);
+    color: var(--brand-orange-text);
     border: 1.8px solid var(--brand-orange);
 }
 
@@ -382,7 +547,7 @@ body {
 
 .btn-toggle-status:hover {
     background-color: var(--brand-orange);
-    color: var(--text-inverse);
+    color: var(--brand-orange-text);
 }
 
 .btn-toggle-status.reativar {
@@ -393,10 +558,9 @@ body {
 
 .btn-toggle-status.reativar:hover {
     background-color: var(--badge-active-bg);
-    color: var(--text-inverse);
+    color: #ffffff;
 }
 
-/* Modal com Borda Interna Dupla do Monolito */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -409,19 +573,27 @@ body {
 }
 
 .modal-card {
-    background-color: #ffffff;
+    background-color: var(--bg-surface);
     width: 100%;
     max-width: 600px;
     border-radius: 16px;
     padding: 6px;
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.35);
     animation: modalFadeIn 0.2s ease;
 }
 
+[data-theme="dark"] .modal-card {
+    background-color: #11192b;
+}
+
 .modal-inner-border {
-    border: 1.6px solid var(--brand-navy);
+    border: 1.6px solid #14213d;
     border-radius: 12px;
     padding: 1.5rem 2.5rem 2.5rem 2.5rem;
+}
+
+[data-theme="dark"] .modal-inner-border {
+    border-color: #ffffff;
 }
 
 @keyframes modalFadeIn {
@@ -451,13 +623,13 @@ body {
 }
 
 .btn-close-modal:hover {
-    color: #000000;
+    color: var(--text-primary);
 }
 
 .modal-page-title {
     font-size: 2.2rem;
     font-weight: 900;
-    color: var(--brand-navy);
+    color: var(--text-primary);
     text-align: center;
     text-transform: uppercase;
     letter-spacing: -1px;
@@ -469,7 +641,7 @@ body {
     width: 60%;
     margin: 0 auto 2rem auto;
     border: none;
-    border-top: 1px solid #000000;
+    border-top: 1px solid var(--text-primary);
 }
 
 .form-group {
@@ -481,7 +653,7 @@ body {
 .form-group label {
     font-size: 1rem;
     font-weight: 700;
-    color: #212529;
+    color: var(--text-primary);
     text-transform: uppercase;
     margin-bottom: 0.35rem;
 }
@@ -489,15 +661,18 @@ body {
 .form-group input {
     height: 46px;
     padding: 0 1rem;
-    border: 1.6px solid var(--border-input);
+    border: 1.6px solid var(--input-border);
     border-radius: 8px;
     font-size: 1rem;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
     outline: none;
-    transition: border-color 0.15s;
+    transition: border-color 0.15s, background-color 0.2s;
 }
 
 .form-group input:focus {
     border-color: var(--brand-orange);
+    box-shadow: 0 0 0 0.2rem rgba(255, 126, 18, 0.25);
 }
 
 .help-text {
@@ -517,14 +692,15 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 0.75rem 1rem;
-    border: 1.6px solid var(--border-sidebar);
+    border: 1.6px solid var(--border-color);
     border-radius: 8px;
+    background-color: var(--bg-subtle);
     cursor: pointer;
     transition: background-color 0.15s ease, border-color 0.15s ease;
 }
 
 .role-checkbox-item:hover {
-    background-color: var(--bg-nav-hover);
+    background-color: var(--nav-hover);
     border-color: var(--brand-orange);
 }
 
@@ -537,7 +713,7 @@ body {
 
 .role-checkbox-item span {
     font-size: 0.9rem;
-    color: var(--text-body);
+    color: var(--text-primary);
     line-height: 1.35;
 }
 
@@ -585,8 +761,8 @@ body {
     justify-content: center;
     text-align: center;
     min-height: calc(100vh - 170px);
-    background-color: var(--bg-main);
-    border: 1.6px solid var(--brand-navy);
+    background-color: var(--bg-surface);
+    border: 1.6px solid var(--border-color);
     border-radius: 16px;
     padding: 3rem 2rem;
 }
@@ -595,7 +771,7 @@ body {
     width: 64px;
     height: 64px;
     border-radius: 50%;
-    background-color: #fff0ee;
+    background-color: rgba(239, 68, 68, 0.14);
     color: var(--badge-inactive-bg);
     display: flex;
     align-items: center;
@@ -615,7 +791,7 @@ body {
 .forbidden-title {
     font-size: 1.45rem;
     font-weight: 800;
-    color: var(--brand-navy);
+    color: var(--text-primary);
     margin-bottom: 0.75rem;
 }
 
