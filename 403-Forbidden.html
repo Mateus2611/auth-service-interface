@@ -3,76 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Acesso Negado - Acrillservice</title>
+    <title>Acesso Negado - AcrillService</title>
+
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./assets/css/sysadmin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body style="display: none;">
-    <div class="app-container">
-        <aside class="sidebar">
-            <div class="sidebar-logo">
-                <img src="./assets/img/logo.png" alt="Acrillservice" onerror="this.style.display='none'">
-                <span class="logo-text">ACRILLSERVICE</span>
+
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <a href="http://localhost:8085/" class="logo-link">
+                <img src="./assets/images/acrillogo.svg" alt="Logo AcrillService"
+                     onerror="this.onerror=null; this.src='./assets/img/logo-acrillservice.png';">
+            </a>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="http://localhost:8085/" class="nav-item">
+                <i class="bi bi-house-door-fill"></i>
+                <span>INÍCIO</span>
+            </a>
+            <a href="http://localhost:8085/produto" class="nav-item">
+                <i class="bi bi-box-seam-fill"></i>
+                <span>PRODUTOS</span>
+            </a>
+            <a href="http://localhost:8085/venda" class="nav-item">
+                <i class="bi bi-cart-fill"></i>
+                <span>VENDAS</span>
+            </a>
+            <a href="http://localhost:8085/orcamento" class="nav-item">
+                <i class="bi bi-file-earmark-text-fill"></i>
+                <span>ORÇAMENTOS</span>
+            </a>
+            <a href="http://localhost:8085/cliente" class="nav-item">
+                <i class="bi bi-people-fill"></i>
+                <span>CLIENTES</span>
+            </a>
+            <a href="http://localhost:8085/avaliacao" class="nav-item">
+                <i class="bi bi-star-fill"></i>
+                <span>AVALIAÇÕES</span>
+            </a>
+            <a href="http://localhost:5500/report-service-interface/index.html" rel="noreferrer" class="nav-item" id="menu-relatorios">
+                <i class="bi bi-bar-chart-line-fill"></i>
+                <span>RELATÓRIOS</span>
+            </a>
+            <a href="./index.html" class="nav-item" id="menu-sysadmin">
+                <i class="bi bi-shield-lock-fill"></i>
+                <span>SYSADMIN</span>
+            </a>
+        </nav>
+
+        <div class="user-profile-widget">
+            <div class="user-info-row">
+                <div class="user-avatar">
+                    <span id="sidebar-user-avatar">U</span>
+                </div>
+                <div class="user-details">
+                    <span class="user-email" id="sidebar-user-email" title="Carregando...">Carregando...</span>
+                    <span class="user-role" id="sidebar-user-role">USUÁRIO</span>
+                </div>
             </div>
 
-            <nav class="sidebar-nav">
-                <a href="http://localhost:8085/" class="nav-item">
-                    <i class="fa-solid fa-house"></i> INÍCIO
-                </a>
-                <a href="http://localhost:8085/produtos" class="nav-item">
-                    <i class="fa-solid fa-box"></i> PRODUTO
-                </a>
-                <a href="http://localhost:8085/vendas" class="nav-item">
-                    <i class="fa-solid fa-cart-shopping"></i> VENDAS
-                </a>
-                <a href="http://localhost:8085/orcamentos" class="nav-item">
-                    <i class="fa-solid fa-file-lines"></i> ORÇAMENTOS
-                </a>
-                <a href="http://localhost:8085/clientes" class="nav-item">
-                    <i class="fa-solid fa-users"></i> CLIENTES
-                </a>
-                <a href="http://localhost:8085/avaliacoes" class="nav-item">
-                    <i class="fa-solid fa-star"></i> AVALIAÇÕES
-                </a>
-                <a href="./index.html" class="nav-item" id="menu-sysadmin">
-                    <i class="fa-solid fa-shield-halved"></i> SYSADMIN
-                </a>
-            </nav>
-
-            <div class="sidebar-footer">
-                <div id="user-logged-email" class="user-logged-info"></div>
-                <button type="button" id="btn-logout" class="nav-item logout-btn">
-                    <i class="fa-solid fa-right-from-bracket"></i> SAIR
+            <div class="user-actions-row">
+                <button type="button" id="theme-toggle" class="btn-theme" title="Alternar Tema" aria-label="Alternar Tema">
+                    <svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+                    </svg>
+                    <svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display: none;">
+                        <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                    </svg>
                 </button>
+
+                <button type="button" id="btn-logout" class="btn-logout">SAIR</button>
             </div>
-        </aside>
+        </div>
+    </aside>
 
-        <main class="main-content">
-            <header class="page-header">
-                <h1>ACESSO RESTRITO</h1>
-            </header>
+    <main class="main-content" style="display: flex; flex-direction: column;">
+        <header class="page-header" style="margin-bottom: 1.5rem;">
+            <h1 class="page-title">ACESSO RESTRITO</h1>
+        </header>
 
-            <section class="forbidden-container">
-                <div class="forbidden-icon">
-                    <i class="fa-solid fa-lock"></i>
-                </div>
-                <span class="forbidden-code">403</span>
-                <h2 class="forbidden-title">Você não tem autorização para acessar esta tela</h2>
-                <p class="forbidden-text">
-                    Seu perfil de usuário não possui permissão para visualizar este módulo ou executar esta operação.
-                    Utilize o menu lateral para navegar para uma área liberada ao seu perfil.
-                </p>
+        <section class="forbidden-container" style="min-height: auto; flex: 1;">
+            <div class="forbidden-icon">
+                <i class="bi bi-shield-lock-fill"></i>
+            </div>
+            <span class="forbidden-code">403</span>
+            <h2 class="forbidden-title">Você não tem autorização para acessar esta tela</h2>
+            <p class="forbidden-text">
+                Seu perfil de usuário não possui permissão para visualizar este módulo ou executar esta operação.
+                Utilize o menu lateral ou os botões abaixo para retornar a uma área liberada ao seu perfil.
+            </p>
 
-                <div class="forbidden-actions">
-                    <button type="button" id="btn-voltar" class="btn-secondary">VOLTAR</button>
-                    <a href="http://localhost:8085/" class="btn-primary btn-link">
-                        IR PARA O INÍCIO
-                    </a>
-                </div>
-            </section>
-        </main>
-    </div>
+            <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+                <button type="button" id="btn-voltar" class="btn-outline-cancel" style="padding: 11px 28px; font-size: 0.9rem;">
+                    VOLTAR
+                </button>
+                <a href="http://localhost:8085/" class="btn-orange" style="text-decoration: none; padding: 13px 28px; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    <i class="bi bi-house-door-fill"></i>
+                    <span>IR PARA O INÍCIO</span>
+                </a>
+            </div>
+        </section>
+    </main>
+</div>
 
-    <script type="module" src="./assets/js/forbidden/main.js"></script>
+<script type="module" src="./assets/js/forbidden/main.js"></script>
 </body>
 </html>
