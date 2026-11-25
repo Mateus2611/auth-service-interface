@@ -6,8 +6,14 @@
     <title>Sysadmin - AcrillService</title>
 
     <script>
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        function obterTemaCookie() {
+            const cookie = document.cookie.split('; ').find(row => row.startsWith('app_theme='));
+            return cookie ? cookie.split('=')[1] : 'light';
+        }
+
+        const savedTheme = obterTemaCookie();
         document.documentElement.setAttribute('data-theme', savedTheme);
+        document.documentElement.setAttribute('data-bs-theme', savedTheme);
     </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -167,6 +173,10 @@
                             <label class="role-checkbox-item">
                                 <input type="checkbox" name="roles" value="add_product">
                                 <span><strong>add_product</strong> — Cadastro e edição de produtos</span>
+                            </label>
+                            <label class="role-checkbox-item">
+                                <input type="checkbox" name="roles" value="Client">
+                                <span><strong>Client</strong> — Crie e edite avaliações</span>
                             </label>
                         </div>
                     </div>

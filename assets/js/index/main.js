@@ -176,7 +176,7 @@ function verificarAcessoAdmin() {
         });
 
         if (!isAdmin) {
-            window.location.replace("http://localhost:8085/");
+            window.location.replace("./403-Forbidden.html");
             return false;
         }
 
